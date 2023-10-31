@@ -10,7 +10,7 @@ The API specification requires that your service exposes an endpoint that receiv
 * Customer Validation: Fetching and returning the details of the customer
 * Payment Notification: Giving the customer value for the payment they made
 
-This means the xml should be inspected to determine if the required operation is customer validation or payment notification. The following snipped demonstrates how this can be achieved.
+This means the XML should be inspected to determine if the required operation is **Customer Validation** or **Payment Notification**. The following snippet demonstrates how this can be achieved.
 
 ```java
 	@PostMapping(value = "/isw-bills-payment", consumes = TEXT_XML_VALUE, produces = TEXT_XML_VALUE)
@@ -26,7 +26,7 @@ This means the xml should be inspected to determine if the required operation is
 ```
 
 ## Customer Validation
-When the xml contains 'CustomerInformationRequest' the implementation should fetch the details of the customer and return it in the response xml. The main parameter in the customer validation request is the customer reference (CustReference). The implementer will then retrieve details of the customer, such as the customer's name (and address, if applicable). The exact detail of the custome to be returned depends on what type of biller you are. Sample customer validation payloads are show below, with implementation.
+When the XML contains 'CustomerInformationRequest' the implementation should fetch the details of the customer and return it in the response XML. The main tag in the **Customer Validation** request is 'CustReference'. Use the value of this tag to retrieve details of the customer, such as the customer's name (and address, if applicable). The exact details of the customer to be returned depends on what type of biller you are. Sample customer validation payloads are show below, with implementation.
 
 ### Sample Customer Valiation Request
 ```
@@ -83,7 +83,7 @@ When the xml contains 'CustomerInformationRequest' the implementation should fet
 ```
 
 ## Payment Notification
-When the XML contains 'PaymentNotificationRequest' the implementation should give value to the customer. An example of giving value to the customer could be, crediting the wallet of the customer. After successfully giving value, an appropriate 'Status' should be sent in the the response xml. Sample payment notification payloads are show below, with implementation.
+When the XML contains 'PaymentNotificationRequest' the implementation should give value to the customer. An example of giving value to the customer could be, crediting the wallet of the customer. After successfully giving value, an appropriate 'Status' (0 for successful and 1 for failed) should be sent in the the response XML. Sample **Payment Notification** payloads are show below, with implementation.
 
 ### Sample Payment Notification Request
 ```
@@ -183,6 +183,8 @@ When the XML contains 'PaymentNotificationRequest' the implementation should giv
 		return objectToXml(response, PaymentNotificationResponse.class);
 	}
 ```
+
+The complete implementation of this demo is in 'BillsPaymentApplication.java'.
 
 # Installation
 If you are running Java 17 or higher and have maven installed, you can execute the following commands to run the project:
