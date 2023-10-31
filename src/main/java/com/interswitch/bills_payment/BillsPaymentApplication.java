@@ -173,16 +173,6 @@ class PaymentNotificationRequest {
 @XmlAccessorType(XmlAccessType.FIELD)
 class PaymentNotificationResponse {
 
-	// <PaymentNotificationResponse>
-	// <Payments>
-	// <Payment>
-	// <PaymentLogId>3193831</PaymentLogId>
-	// <Status>0</Status>
-	// <StatusMessage>Payment Received</StatusMessage>
-	// </Payment>
-	// </Payments>
-	// </PaymentNotificationResponse>
-
 	@XmlElementWrapper(name = "Payments")
 	private List<Payment> Payment;
 }
